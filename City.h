@@ -34,7 +34,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
-    	void addEvent(long IDSensor, int year,int month,int day, int hour, int minute);
+    	void addEvent(long IDSensor, int year,int month,int day, int hour, int minute, int wDay,char trafic);
     // Contrat :
     //
 
@@ -45,19 +45,20 @@ public:
     // Contrat :
     //
 
+	// type Méthode ( liste des paramètres );
+	// Mode d'emploi :
+		int* jamDay(int wDay);
+	// Contrat :
+	//
+
 
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
-		int* statDay (int day);
+		int* statDay (int wDay);
     // Contrat :
     //
 
 
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-		int* jamDay(int idcapteur);
-    // Contrat :
-    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     City & operator = ( const City & unCity );
