@@ -6,11 +6,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <City> (fichier ${file_name}) ------
-<<<<<<< HEAD
+
 #ifndef CITY_H
-=======
-#if ! defined CITY_H
->>>>>>> f08c21382f2465be4afbb41209ad4f080b755ed6
 #define CITY_H
 
 //--------------------------------------------------- Interfaces utilisées
