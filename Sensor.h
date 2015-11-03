@@ -15,7 +15,8 @@ class Sensor
 {
 public:
 	int count(char trafic = 'A', int wDay = -1, int hour = -1, int minute = -1);
-	// compte les elements précisé d’un capteur
+	// compte les elements précisé d’un capteur, les valeurs par défaut indiquent
+	// que la valeur n’importe pas.
 
 	void add(int year, int month, int day, int hour, int minute, int wDay, char trafic);
 	// ajoute un evenement au capteur
