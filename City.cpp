@@ -22,10 +22,15 @@
 //----------------------------------------------------- Méthodes publiques
 void City::addEvent(long IDSensor, int year,int month,int day, int hour, int minute, int wDay,char trafic)
 {
-	Sensor* InsSensor = find(IDSensor);
+	Sensor* InsSensor(find(IDSensor));
 	if (InsSensor!= NULL)
 	{
 		InsSensor->add( year, month, day,  hour,  minute, wDay, trafic);
+	}
+	else
+	{
+		Sensor newOne(IDSensor, root);
+		newOne.add( year, month, day,  hour,  minute, wDay, trafic);
 	}
 }
 int* City::statSensor(int idSensor)
