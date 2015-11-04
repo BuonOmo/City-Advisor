@@ -23,13 +23,14 @@
 void City::addEvent(long IDSensor, int year,int month,int day, int hour, int minute, int wDay,char trafic)
 {
 	Sensor* InsSensor(find(IDSensor));
-	if (InsSensor!= NULL)
+		if (InsSensor!= NULL)
 	{
 		InsSensor->add( year, month, day,  hour,  minute, wDay, trafic);
 	}
 	else
 	{
-		Sensor newOne(IDSensor, root);
+				Sensor newOne(IDSensor, root);
+		cout << "ça passe7" << endl;
 		newOne.add( year, month, day,  hour,  minute, wDay, trafic);
 	}
 }
@@ -141,7 +142,7 @@ City::City ( )
     cout << "Appel au constructeur de <City>" << endl;
 #endif
 
-    root = NULL ;
+    root = new Sensor;
     nbSensors = 0;
 } //----- Fin de City
 
@@ -171,15 +172,15 @@ bool City::sensorExiste(long idSensor)
 }
 Sensor* City::find(int idSensor)
 {
-	Sensor* cur = root;
+		Sensor* cur = root;
 		while (cur->hasNext())
+	{
+		if (cur->getId() == idSensor)
 		{
-			if (cur->getId() == idSensor)
-			{
-				return cur;
-			}
+			return cur;
 		}
-		return NULL ;
+	}
+	return NULL ;
 }
 void City::addSensor (long idSensor)
 {

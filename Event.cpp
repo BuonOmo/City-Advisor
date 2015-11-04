@@ -35,6 +35,12 @@ Event::Event (int aYear, int aMonth, int aDay, int anHour, int aMinute, int aWDa
 	root -> next = this;
 }
 
+Event::Event () :
+		year(0), month(0), day(0), hour(0), minute(0), wDay(0), trafic('V')
+{
+	next = NULL;
+}
+
 Event::~Event ()
 {
 	// TODO Auto-generated destructor stub

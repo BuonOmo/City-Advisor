@@ -8,8 +8,10 @@
 #ifndef SENSOR_H
 #define SENSOR_H
 
-
+#include <iostream>
 #include "Event.h"
+
+using namespace std;
 
 class Sensor
 {
@@ -28,6 +30,8 @@ public:
 	long getId() const;
 
 	Sensor (long anId, Sensor * aSensor);
+
+	Sensor ();
 	virtual ~Sensor ();
 private:
 	long id;

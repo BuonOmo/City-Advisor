@@ -30,7 +30,10 @@ int Sensor::count(char trafic, int wDay, int hour, int minute)
 
 void Sensor::add(int year, int month, int day, int hour, int minute, int wDay, char trafic)
 {
+	cout << "ça passe1" << endl;
+	cout << root << endl;
 	new Event(year, month, day, hour, minute, wDay, trafic, root);
+	cout << "ça passe8" << endl;
 	size++;
 }
 
@@ -54,6 +57,12 @@ Sensor::Sensor (long anId, Sensor * aSensor) :
 {
 	next = aSensor -> next;
 	aSensor -> next = this;
+}
+
+Sensor::Sensor() :
+		id(0), size(0), root(new Event())
+{
+	next = NULL;
 }
 
 Sensor::~Sensor ()

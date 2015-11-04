@@ -10,6 +10,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 class Event
 {
 public:
@@ -20,6 +22,7 @@ public:
 	bool is(char trafic = 'A', int wDay = -1, int hour = -1, int minute = -1);
 
 	Event (int aYear, int aMonth, int aDay, int anHour, int aMinute, int aWDay, char aTrafic, Event * root);
+	Event();
 	virtual ~Event ();
 
 private:

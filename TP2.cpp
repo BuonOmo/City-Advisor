@@ -8,20 +8,11 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 #include "City.h"
 
 using namespace std;
-
-int stringToInt(string s)
-{
-	int i, n;
-	n = 0;
-	for (i = 0; s[i] >= '0' && s[i] <= '9'; ++i)
-		n = 10 * n + (s[i] - '0');
-	return n;
-}
-
 
 int main(void)
 {
@@ -38,31 +29,32 @@ int main(void)
    while (str.compare("bye")!=0) {
       if (str.compare("ADD")==0) {
     	  getline(cin, str, ' ');
-    	  id = stringToInt(str);
+    	  id = atoi(str.c_str());
     	  cout << str << endl;
 
     	  getline(cin, str, ' ');
-    	  yyyy = stringToInt(str);
+    	  yyyy = atoi(str.c_str());
     	  cout << str << endl;
 
     	  getline(cin, str, ' ');
-    	  mm = stringToInt(str);
+    	  mm = atoi(str.c_str());
     	  cout << str << endl;
 
     	  getline(cin, str, ' ');
-    	  dd = stringToInt(str);
+    	  dd = atoi(str.c_str());
     	  cout << str << endl;
 
     	  getline(cin, str, ' ');
-    	  h = stringToInt(str);
+    	  h = atoi(str.c_str());
     	  cout << str << endl;
 
     	  getline(cin, str, ' ');
-    	  m = stringToInt(str);
+    	  m = atoi(str.c_str());
     	  cout << str << endl;
 
     	  getline(cin, str, ' ');
-    	  d7 = stringToInt(str);
+
+    	  d7 = atoi(str.c_str());
     	  cout << str << endl;
 
     	  getline(cin, str);
@@ -70,6 +62,7 @@ int main(void)
     	  cout << str << endl;
 
     	  LA.addEvent(id, yyyy, mm, dd, h, m, d7, trafic);
+    	  cout << "ça passe" << endl;
     	  LA.statSensor(id);
 
       } else if (str.compare("JAM_DH")==0) {
