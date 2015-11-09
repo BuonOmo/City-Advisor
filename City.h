@@ -18,6 +18,7 @@
 using namespace std;
 //----------------------------------------------------------------Includes
 #include "Sensor.h"
+#include <string>
 #include <iostream>
 //------------------------------------------------------------------------
 // Rôle de la classe <City>
@@ -41,7 +42,8 @@ public:
 
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
-		int* statSensor(int sensor);
+    	void statDay (int wDay);
+		void statSensor(int sensor);
     // Contrat :
     //
 
@@ -54,8 +56,7 @@ public:
 
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
-		int* statDay (int wDay);
-    // Contrat :
+		    // Contrat :
     //
 
 
@@ -86,13 +87,13 @@ public:
     //
     // Contrat :
     //
-
+	Sensor* find(int idSensor);
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
 
-	Sensor* find(int idSensor);
+
 	bool sensorExiste(long idSensor);
 	void addSensor (long idSensor);
 
