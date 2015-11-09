@@ -174,11 +174,6 @@ Sensor* City::find(int idSensor)
 #ifdef MAP
     cout << "Appel a find (City)" << endl;
 #endif
-    if (Sensor::find(idSensor,root)!=NULL)
-	{
-    	long i = Sensor::find(idSensor,root)->getId();
-    	//cout << "find"<<i << endl;
-	}
 	return Sensor::find(idSensor,root);
 }
 void City::addSensor (long idSensor)
