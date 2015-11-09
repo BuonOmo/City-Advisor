@@ -32,7 +32,7 @@ int Sensor::count(char trafic, int wDay, int hour, int minute) const
 		traficMin= 3;
 		break;
 	}
-	cout << "Sensor::count tmin="<<traficMin<<" tman="<<traficMax<<endl;
+	//cout << "Sensor::count tmin="<<traficMin<<" tman="<<traficMax<<endl;
 
 	 int wDMin = (wDay >0 )? wDay : 0 ;
 	 int wDMax = (wDay >0 )? wDay+1 : 7;
@@ -54,14 +54,14 @@ int Sensor::count(char trafic, int wDay, int hour, int minute) const
 	 				{
 	 					if (eventMatrix[mnCount][hCount][dayCount][traficCount]!=0)
 	 					{
-	 						cout << "eventMatrix " << mnCount <<" "<<hCount<<" "<< dayCount << " "<<traficCount<<"  = "<<eventMatrix[mnCount][hCount][dayCount][traficCount] << endl;
+	 						//cout << "eventMatrix " << mnCount <<" "<<hCount<<" "<< dayCount << " "<<traficCount<<"  = "<<eventMatrix[mnCount][hCount][dayCount][traficCount] << endl;
 	 					}
 	 					sum += eventMatrix[mnCount][hCount][dayCount][traficCount];
 	 				}
 	 			}
 	 		}
 	 	}
-	 cout<<sum <<endl;
+	 //cout<<sum <<endl;
 	 return sum ;
 }
 int Sensor::countInAllSensor(Sensor*  arrayRoot, char trafic, int wDay , int hour, int minute)
@@ -80,7 +80,7 @@ int Sensor::countInAllSensor(Sensor*  arrayRoot, char trafic, int wDay , int hou
 
 void Sensor::add(int year, int month, int day, int hour, int minute, int wDay, char trafic)
 {
-	cout << trafic << endl;
+	//cout << trafic << endl;
 	int traficInt=0;
 	switch  (trafic)
 	{
@@ -97,9 +97,9 @@ void Sensor::add(int year, int month, int day, int hour, int minute, int wDay, c
 			traficInt =3;
 			break;
 	}
-	cout<<"trafic"<<traficInt<<endl;
+	//cout<<"trafic"<<traficInt<<endl;
 	(eventMatrix[minute][hour][wDay][traficInt])++;
-	cout << "Sensor::add eventMatrix"<< minute <<" "<< hour << " "<<wDay<<" "<<traficInt <<" ="<<eventMatrix[minute][hour][wDay][traficInt]<<endl;
+	//cout << "Sensor::add eventMatrix"<< minute <<" "<< hour << " "<<wDay<<" "<<traficInt <<" ="<<eventMatrix[minute][hour][wDay][traficInt]<<endl;
 }
 
 
@@ -109,7 +109,7 @@ long Sensor::getId() const
 }
  Sensor* Sensor::find(long idSensor,Sensor*  arrayRoot)
 {
-	 cout << "find looking for : "<< idSensor<< endl ;
+	 //cout << "find looking for : "<< idSensor<< endl ;
 	if (arrayRoot==NULL)
 	{
 		return NULL;
@@ -213,7 +213,15 @@ Sensor::Sensor() :
 Sensor::~Sensor ()
 {
 		//TODO reflechir à un destructeur
-	cout << "destructor sensor" << endl;
+	//cout << "destructor sensor" << endl;
+	if (nextL != NULL)
+	{
+		delete(nextL);
+	}
+	if (nextR != NULL)
+	{
+		delete(nextR);
+	}
 	//delete this;
 }
 
