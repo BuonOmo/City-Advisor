@@ -49,7 +49,7 @@ public:
 
 	// type Méthode ( liste des paramètres );
 	// Mode d'emploi :
-		int* jamDay(int wDay);
+		void jamDay(int wDay);
 	// Contrat :
 	//
 
