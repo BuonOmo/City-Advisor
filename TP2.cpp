@@ -65,21 +65,20 @@ int main(void)
     	  cout << str << endl;
 
     	  LA.addEvent(id, yyyy, mm, dd, h, m, d7, trafic);
-    	  LA.statSensor(id);
-    	  LA.statDay(3);
-    	  cout << "ça passe1" << endl;
 
       } else if (str.compare("JAM_DH")==0) {
 
       } else if (str.compare("STATS_D7")==0)
       {
     	  cout << "statD7"<<endl;
-    	  LA.statDay(3);
+    	  getline(cin, str);
+    	  LA.statDay(atoi(str.c_str()));
       } else if (str.compare("STATS_C")==0) {
-
+    	  getline(cin, str);
+    	  LA.statSensor(atoi(str.c_str()));
       }
+
       str.clear();
-	  cout << "ça passe2" << endl;
       getline(cin,str,' ');
    }
 
