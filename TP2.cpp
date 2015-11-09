@@ -1,8 +1,8 @@
 //============================================================================
-// Name        : TP2.cpp
+// Name        : TP2.2cpp
 // Author      : Ulysse, Adrien
 // Version     :
-// Copyright   : 
+// Copyright   :
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
@@ -11,6 +11,7 @@
 #include <cstdlib>
 
 #include "City.h"
+#include "Sensor.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ int main(void)
 
    /* placer ici la déclaration de votre liste ainsi que
     * son initialisation */
+
+
 
    getline(cin, str,' ');
    while (str.compare("bye")!=0) {
@@ -62,17 +65,22 @@ int main(void)
     	  cout << str << endl;
 
     	  LA.addEvent(id, yyyy, mm, dd, h, m, d7, trafic);
-    	  cout << "ça passe" << endl;
     	  LA.statSensor(id);
+    	  LA.statDay(3);
+    	  cout << "ça passe1" << endl;
 
       } else if (str.compare("JAM_DH")==0) {
 
-      } else if (str.compare("STATS_D7")==0) {
-
+      } else if (str.compare("STATS_D7")==0)
+      {
+    	  cout << "statD7"<<endl;
+    	  LA.statDay(3);
       } else if (str.compare("STATS_C")==0) {
 
       }
-      getline(cin,str);
+      str.clear();
+	  cout << "ça passe2" << endl;
+      getline(cin,str,' ');
    }
 
 
