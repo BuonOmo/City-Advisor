@@ -123,13 +123,14 @@ long Sensor::getId() const
 			{
 				return cur;
 			}
+
 			if (idSensor > cur->id)
 			{
-				cur=cur->nextR ;
+				cur= cur->nextR ;
 			}
 			else
 			{
-				cur = cur ->nextL;
+				cur = cur->nextL;
 			}
 		}
 		return NULL;
@@ -159,18 +160,18 @@ Sensor::Sensor (long anId, Sensor*&  rootSensorTree) :
 		while (cur != NULL)
 		{
 			curPrevus = cur ;
-			cur = ((cur->id) > this->id )? nextL : nextR;
+			cur = ((cur->id) > this->id )? cur->nextL : cur->nextR;
 		}
 
 		if(curPrevus->id > this->id )
 		{
 			curPrevus->nextL= this;
-			previus = curPrevus;
+			this->previus = curPrevus;
 		}
 		else
 		{
 			curPrevus->nextR= this;
-			previus = curPrevus;
+			this->previus = curPrevus;
 		}
 	}
 	//inicialisation
