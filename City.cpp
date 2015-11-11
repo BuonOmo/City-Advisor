@@ -78,7 +78,8 @@ void City::jamDay (int wDay)
 	{
 		jam=Sensor::countInAllSensor(root,'N',wDay,hourCount)+Sensor::countInAllSensor(root,'R',wDay,hourCount);
 		sum=Sensor::countInAllSensor(root,'A',wDay,hourCount);
-		cout <<wDay << ""<< hourCount <<" "<< (jam*100)/sum<< "%" <<endl;
+		sum = (sum==0)? 1 : sum;
+		cout <<wDay+1 << " "<< hourCount <<" "<< (jam*100)/sum<< "%" <<endl;
 	}
 }
 
@@ -94,14 +95,89 @@ void City::statDay(int wDay)
 	long red = Sensor::countInAllSensor(root,'R',wDay);
 	long black = Sensor::countInAllSensor(root,'N',wDay);
 	long sum = green+yellow+black+red;
+	sum = (sum==0)? 1 : sum;
 	cout << "V " <<(green*100)/sum <<"%"<< endl;
 	cout << "J " <<(yellow*100)/sum <<"%"<< endl;
 	cout << "R " <<(red*100)/sum <<"%"<< endl;
 	cout << "N " <<(black*100)/sum <<"%"<< endl;
 }
 
-//------------------------------------------------- Surcharge d'opérateurs
+void City::opt(int wDay,int startHour, int endHour,int rideLength ,long* idSensors )
+{
+#ifdef MAP
+	cout << "Appel a City::Opt" << endl;
+#endif
+	cout << "entré dans opt" << endl;
+	const int timeMax = 60 *endHour-startHour;
+	int optHour;
+	int optMinute;
+	bool aRideHaveBeenFind=false;
+	int optTime=timeMax; // en minutes
+	for (int countHour=startHour; countHour<endHour ; countHour++)
+	{
+		for (int countMinute=0; countMinute<60 ; countMinute++)
+		{
+			cout << "entré dans hh:mm" << endl;
+			int curRideTime=0;
+			int nbTraveledSegment=0;
+			int curHour=countHour;
+			int curMinute = countMinute;
 
+			for (int IdSensorIndex= 0;IdSensorIndex<rideLength ; IdSensorIndex++)
+			{
+				cout << "entré dans id Sensor " <<idSensors[IdSensorIndex]<< endl;
+				cout <<curHour << " "<<curMinute<< endl;
+				if ( curRideTime>=optTime || curHour>=timeMax )
+				{
+					break;
+				}
+				Sensor* cur = find(idSensors[IdSensorIndex]);
+				if (cur==NULL)
+				{
+					cout << "cur == NULL" << endl;
+					return ;
+				}
+				double green = cur->count('V',wDay,curHour,curMinute);
+				double yellow = cur->count('J',wDay,curHour,curMinute);
+				double red = cur->count('R',wDay,curHour,curMinute);
+				double black = cur->count('N',wDay,curHour,curMinute);
+				double sum = green+yellow+black+red;
+				while (sum ==0)
+				{
+					// rechche de valeur plus lonig dans les temps
+					curRideTime+=1;
+					curMinute += 1;
+					curHour+= curMinute/60;
+					curMinute-= (curMinute/60)* 60;
+
+					green = cur->count('V',wDay,curHour,curMinute);
+					yellow = cur->count('J',wDay,curHour,curMinute);
+					red = cur->count('R',wDay,curHour,curMinute);
+					black = cur->count('N',wDay,curHour,curMinute);
+					sum = green+yellow+black+red;
+
+				}
+				int SegementTime = int (green/sum+2*yellow/sum+4*red/sum+10*black/sum);
+				curRideTime+=SegementTime;
+				curMinute += SegementTime;
+				curHour+= curMinute/60;
+				curMinute-= (curMinute/60)* 60;
+				nbTraveledSegment++;
+			}
+			if (nbTraveledSegment==rideLength && curRideTime<optTime)
+			{
+				optHour=countHour;
+				optMinute=countMinute;
+				optTime=curRideTime;
+				aRideHaveBeenFind=true;
+			}
+		}
+	}
+	if (aRideHaveBeenFind)
+	{
+		cout << wDay<<" "<<optHour<<" "<<optMinute<<" "<<optTime<< endl;
+	}
+}
 
 //-------------------------------------------- Constructeurs - destructeur
 City::City ( const City & aCity )

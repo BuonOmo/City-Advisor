@@ -61,7 +61,7 @@ public:
     // Contrat :
     //un évenement a été enregitré pas le capteur dont l'identifient est Idsensor.
 
-
+		void opt(int wDay, int startHour, int endHour,int rideLength ,long* idSensors );
 
 
 //-------------------------------------------- Constructeurs - destructeur
