@@ -67,10 +67,10 @@ int Sensor::count(char trafic, int wDay, int hour, int minute) const
 	 return sum ;
 }
 int Sensor::countInAllSensor(Sensor*  rootSensorTree, char trafic, int wDay , int hour, int minute)
+//algo : appel itératife de countInAllSensor
+// Lors des itération 'rootSensorTree' n'est alors plus la rassine de l'arbre entier
+// mais de sous arbres.
 {
-	//algo : appel itératife de countInAllSensor
-	// Lors des itération 'rootSensorTree' n'est alors plus la rassine de l'arbre entier
-	// mais de sous arbres.
 	int result =rootSensorTree->count(trafic,  wDay ,  hour,  minute);
 	if (rootSensorTree->nextL!=NULL)
 	{
@@ -148,15 +148,14 @@ Sensor::Sensor (long idSensor, Sensor*&  rootSensorTree) :
 	if (rootSensorTree == NULL)
 	{
 		rootSensorTree=this;
-		previus =  NULL;
 	}
 	else
 	{
 		Sensor * cur = rootSensorTree;
 		Sensor * curPrevus;
 
-// utilisation de "this" (ontraire au guide de style) pour diférencier plus ésément
-// le cur->id et this->id
+		// utilisation de "this" (ontraire au guide de style) pour diférencier plus ésément
+		// le cur->id et this->id
 		while (cur != NULL)
 		{
 			curPrevus = cur ;
@@ -166,12 +165,10 @@ Sensor::Sensor (long idSensor, Sensor*&  rootSensorTree) :
 		if(curPrevus->id > this->id )
 		{
 			curPrevus->nextL= this;
-			this->previus = curPrevus;
 		}
 		else
 		{
 			curPrevus->nextR= this;
-			this->previus = curPrevus;
 		}
 	}
 	//inicialisation de eventMatrix
@@ -233,33 +230,9 @@ else
 }
 
 
-Sensor::Sensor() :
-		id(0)
-{
-	previus=nextL=nextR= NULL;
-
-	//inicialisation de eventMatrix
-	for (int mnCount= 0; mnCount < 60 ; mnCount++)
-	{
-		for (int hCount = 0; hCount < 24 ; hCount++)
-		{
-			for (int dayCount = 0 ; dayCount < 7; dayCount ++)
-			{
-				for (int traficCount=0 ; traficCount < 4 ; traficCount++ )
-				{
-					eventMatrix[mnCount][hCount][dayCount][traficCount]=0;
-				}
-			}
-		}
-	}
-
-}
-
-
 Sensor::~Sensor ()
+// algo : destruction itérative des Capteurs(Sensors)
 {
-	// algo : destruction itérative des Capteurs(Sensors)
-	delete (eventMatrix);
 	if (nextL != NULL)
 	{
 		delete(nextL);
