@@ -79,7 +79,7 @@ void City::jamDay (int wDay)
 		jam=Sensor::countInAllSensor(root,'N',wDay,hourCount)+Sensor::countInAllSensor(root,'R',wDay,hourCount);
 		sum=Sensor::countInAllSensor(root,'A',wDay,hourCount);
 		sum = (sum==0)? 1 : sum;
-		cout <<wDay+1 << " "<< hourCount <<" "<< (jam*100)/sum<< "%" <<endl;
+		cout <<wDay+1 << " "<< hourCount <<" "<< (jam)<< "%" <<endl;
 	}
 }
 
