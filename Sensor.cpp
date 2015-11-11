@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Sensor  -  description
+                           Sensor  -  classe des capteurs
                              -------------------
     début                : 20/10/15
     copyright            : (C) 2015 par LEPIC/BUONOMO
@@ -12,9 +12,9 @@
 
 int Sensor::count(char trafic, int wDay, int hour, int minute) const
 {
-	// définitaion des bornes de la somme:
-	int traficMin= 0;
-	int traficMax= 4;
+	// definintion des bornes de la somme :
+	int traficMin;
+	int traficMax;
 	switch (trafic)
 	{
 	case('V'):
@@ -34,20 +34,20 @@ int Sensor::count(char trafic, int wDay, int hour, int minute) const
 		traficMin= 3;
 		break;
 	default:
-		//traficMin= 0;
-		//traficMax= 4; cf définition
+		traficMin= 0;
+		traficMax= 4;
 		break;
 
 	}
 
-	 int wDMin = (wDay >0 )? wDay : 0 ;
-	 int wDMax = (wDay >0 )? wDay+1 : 7;
+	 int wDMin = (wDay >=0 )? wDay : 0 ;
+	 int wDMax = (wDay >=0 )? wDay+1 : 7;
 
-	 int hourMin = (hour >0)? hour :0;
-	 int hourMax = (hour >0)? hour+1 :24;
+	 int hourMin = (hour >=0)? hour :0;
+	 int hourMax = (hour >=0)? hour+1 :24;
 
-	 int minuteMin = (minute >0 )? minute : 0;
-	 int minuteMax = (minute >0 )? minute + 1 : 60;
+	 int minuteMin = (minute >=0 )? minute : 0;
+	 int minuteMax = (minute >=0 )? minute + 1 : 60;
 
 // rélaisation de la somme
 	 int sum = 0;
@@ -68,8 +68,8 @@ int Sensor::count(char trafic, int wDay, int hour, int minute) const
 }
 int Sensor::countInAllSensor(Sensor*  rootSensorTree, char trafic, int wDay , int hour, int minute)
 //algo : appel itératife de countInAllSensor
-// Lors des itération 'rootSensorTree' n'est alors plus la rassine de l'arbre entier
-// mais de sous arbres.
+// Lors des itération 'rootSensorTree' n'est alors plus la racine de l'arbre entier
+// mais de sous arbres de celui-ci.
 {
 	int result =rootSensorTree->count(trafic,  wDay ,  hour,  minute);
 	if (rootSensorTree->nextL!=NULL)
@@ -112,7 +112,7 @@ void Sensor::add(int year, int month, int day, int hour, int minute, int wDay, c
 
  Sensor* Sensor::find(long idSensor,Sensor*  rootSensorTree)
 {
-	 // parcour de l'arbre binaire
+	// parcour de l'arbre binaire
 	if (rootSensorTree==NULL)
 	{
 		return NULL;

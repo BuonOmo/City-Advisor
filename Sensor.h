@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Sensor  -  description
+                           Sensor  -  classe des capteurs
                              -------------------
     début                : 20/10/15
     copyright            : (C) 2015 par LEPIC/BUONOMO
@@ -29,7 +29,7 @@ public:
 	// defaut indiquent que la methode ne tient pas compte du paramètre en valeur par
 	// defaut, i.e (wDay = -1) <=> (wDay = [1, .. , 7])
 	// Contrat :
-	// les données sont cohérentes (wDay dans [1; 7], hour dans [0 ; 59], etc) et trafic
+	// les données sont cohérentes (wDay dans [0 ; 6], hour dans [0 ; 59], etc) et trafic
 	// peut prendre les valeurs V, J, R et N.
 
 
@@ -40,7 +40,7 @@ public:
 	// selon les critères choisis. les valeurs par defaut indiquent que la methode ne tient
 	// pas compte du paramètre en valeur par defaut, i.e (wDay = -1) <=> (wDay = [1, .. , 7])
 	// Contrat :
-	// les données sont cohérentes (wDay dans [1; 7], hour dans [0 ; 59], etc) et trafic
+	// les données sont cohérentes (wDay dans [0 ; 6], hour dans [0 ; 59], etc) et trafic
 	// peut prendre les valeurs V, J, R et N.
 
 
@@ -49,7 +49,7 @@ public:
     // Mode d'emploi :
 	// ajoute un evenement au capteur
 	// Contrat :
-	// les données sont cohérentes (wDay dans [1; 7], hour dans [0 ; 59], etc) et trafic
+	// les données sont cohérentes (wDay dans [0 ; 6], hour dans [0 ; 59], etc) et trafic
 	// peut prendre les valeurs V, J, R et N.
 
 
@@ -93,4 +93,4 @@ private:
 	// tableau recensant tout les evenements du capteur
 };
 
-#endif /* SRC_SENSOR_H_ */
+#endif // SENSOR_H

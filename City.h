@@ -1,5 +1,5 @@
 /*************************************************************************
-                           City  -  description
+                           	   	   City
                              -------------------
     début                : 20/10/15
     copyright            : (C) 2015 par LEPIC/BUONOMO
@@ -18,11 +18,12 @@ using namespace std;
 #include "Sensor.h"
 #include <string>
 #include <iostream>
+
 //------------------------------------------------------------------------
-// Rôle de la classe City
-//conient les la racine d'un arbre de capteurs et réalise des annalys sur ces
-//derniés.
-//langue : progamation en Anglais, commentaire Frasais.
+// Rôle de la classe City :
+//conient la racine d'un arbre de capteurs et réalise des analyses sur ces
+//derniers.
+//langue : programmation en anglais, commentaires en français.
 //------------------------------------------------------------------------
 
 class City
@@ -31,73 +32,78 @@ class City
 public:
 
 //----------------------------------------------------- Méthodes publiques
+
+	void addEvent(long IDSensor, int year,int month,int day, int hour, int minute, int wDay,char trafic);
     // Mode d'emploi :
-	//ajout un événement a a capteur et crée le capteur si il n'existe pas.
-	//
-    	void addEvent(long IDSensor, int year,int month,int day, int hour, int minute, int wDay,char trafic);
-    // Contrat :
-    // les donés sont sencés : 0 <= minute <60 ect...
-    //
-
-
-    // Mode d'emploi :
-    // affiche les statistiques du jour de la seumaine
-    	void statDay (int wDay);
-    // Contrat :
-    //0<=wDAy<7
-
-
-	// Mode d'emploi :
-	// affiche le pourcentage de bouchon par heur de tout les capteur pour le jour de la
-	//seumaien entré en paramétre.
-		void jamDay(int wDay);
+    // ajout un événement a un capteur ou crée le capteur s'il n'existe pas.
 	// Contrat :
-	// 0<=wDAy<7
+	// les données sont cohérentes (wDay dans [0 ; 6], hour dans [0 ; 59], etc) et trafic
+	// peut prendre les valeurs V, J, R et N.
 
-
-    // Mode d'emploi :
-    // affiche les statistiques d'un capteur dont l'identifient est entré en paramétre.
-		void statSensor(int Idsensor);
+	void statDay (int wDay);
+	// Mode d'emploi :
+	// affiche les statistiques du jour de la semaine selon STATS_D7 du cahier des charges.
     // Contrat :
-    //un évenement a été enregitré pas le capteur dont l'identifient est Idsensor.
+    // wDay dans [0 ; 6].
 
-		void opt(int wDay, int startHour, int endHour,int rideLength ,long* idSensors );
+	void jamDay(int wDay);
+	// Mode d'emploi :
+	// affiche le pourcentage de bouchons par heure de tout les capteurs pour le jour de la
+	// semaine entré en paramètre. Suit JAM_DH du cahier des charges.
+	// Contrat :
+	// wDay dans [0 ; 6].
+
+
+
+	void statSensor(int idSensor);
+	// Mode d'emploi :
+	// affiche les statistiques d'un capteur dont l'identifiant est entré en paramètre.
+	// Suit STATS_C du cahier des charges.
+    // Contrat :
+    // un évenement a été enregitré pas le capteur dont l'identifiant est idSensor.
+
+	void opt(int wDay, int startHour, int endHour,int rideLength ,long* idSensors );
 
 
 //-------------------------------------------- Constructeurs - destructeur
+
     City ( const City & unCity );
     // Mode d'emploi (constructeur de copie) :
-    // copie une Ville icomprie  les capteur qu'elle contien.
-
+    // copie une Ville y compris les capteurs qu'elle contient.
 
     City ( );
-    // Mode d'emploi : Crée une ville sans capteur
+    // Mode d'emploi :
+    // Crée une ville sans capteurs.
 
 
     virtual ~City ( );
-    // Mode d'emploi : détruit une Ville icomprie  les capteur qu'elle contien.
+    // Mode d'emploi : détruit une Ville y compris les capteurs qu'elle contient.
 
 //------------------------------------------------------------------ PRIVE
 
-protected:
-//----------------------------------------------------- Méthodes protégées
+private:
+//----------------------------------------------------- Méthodes privées
 
-    // Mode d'emploi :
-    // ajout un capteur dans l'abre des capteurs.
 	void addSensor (long idSensor);
-
     // Mode d'emploi :
-	// rechres et retourne un pointeur de capteur a partire de sont identifiant
-	// retourne NULL si le capteur n'existe pas.
-	Sensor* find(int idSensor);
+    // ajoute un capteur dans l'abre des capteurs.
+	// Contrat :
+	// l’idenfiant ne doit pas déjà être pris par un autre capteur.
 
-//----------------------------------------------------- Attributs protégés
+
+	Sensor* find(long idSensor);
+	// Mode d'emploi :
+	// recherche et renvoi un pointeur de capteur à partir de son identifiant.
+	// Renvoi NULL si le capteur n'existe pas.
+	// Contrat :
+	// l’idenfiant ne doit pas déjà être pris par un autre capteur.
+
+//----------------------------------------------------- Attributs privés
+
 	Sensor* root;
 
 };
 
-//--------------------------- Autres définitions dépendantes de <City>
-
-#endif // ${include_guard_symbol}
+#endif // CITY_H
 
 

@@ -70,7 +70,7 @@ int main(void)
 		} else if (str.compare("JAM_DH")==0)
 		{
 			getline(cin, str);
-			LA.jamDay(atoi(str.c_str()));
+			LA.jamDay(atoi(str.c_str())-1);
 		} else if (str.compare("STATS_D7")==0)
 		{
 			getline(cin, str);
