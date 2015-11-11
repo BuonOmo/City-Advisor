@@ -1,5 +1,5 @@
 /*************************************************************************
-                           City  -  description
+								  City
                              -------------------
     début                : 20/10/15
     copyright            : (C) 2015 par LEPIC/BUONOMO
@@ -107,17 +107,16 @@ void City::opt(int wDay,int startHour, int endHour,int rideLength ,long* idSenso
 #ifdef MAP
 	cout << "Appel a City::Opt" << endl;
 #endif
-	cout << "entré dans opt" << endl;
 	const int timeMax = 60 *endHour-startHour;
 	int optHour;
 	int optMinute;
-	bool aRideHaveBeenFind=false;
+	bool aRideHasBeenFound=false;
 	int optTime=timeMax; // en minutes
 	for (int countHour=startHour; countHour<endHour ; countHour++)
 	{
 		for (int countMinute=0; countMinute<60 ; countMinute++)
 		{
-			cout << "entré dans hh:mm" << endl;
+
 			int curRideTime=0;
 			int nbTraveledSegment=0;
 			int curHour=countHour;
@@ -125,8 +124,7 @@ void City::opt(int wDay,int startHour, int endHour,int rideLength ,long* idSenso
 
 			for (int IdSensorIndex= 0;IdSensorIndex<rideLength ; IdSensorIndex++)
 			{
-				cout << "entré dans id Sensor " <<idSensors[IdSensorIndex]<< endl;
-				cout <<curHour << " "<<curMinute<< endl;
+
 				if ( curRideTime>=optTime || curHour>=timeMax )
 				{
 					break;
@@ -134,8 +132,7 @@ void City::opt(int wDay,int startHour, int endHour,int rideLength ,long* idSenso
 				Sensor* cur = find(idSensors[IdSensorIndex]);
 				if (cur==NULL)
 				{
-					cout << "cur == NULL" << endl;
-					return ;
+					break ;
 				}
 				double green = cur->count('V',wDay,curHour,curMinute);
 				double yellow = cur->count('J',wDay,curHour,curMinute);
@@ -169,13 +166,13 @@ void City::opt(int wDay,int startHour, int endHour,int rideLength ,long* idSenso
 				optHour=countHour;
 				optMinute=countMinute;
 				optTime=curRideTime;
-				aRideHaveBeenFind=true;
+				aRideHasBeenFound=true;
 			}
 		}
 	}
-	if (aRideHaveBeenFind)
+	if (aRideHasBeenFound)
 	{
-		cout << wDay<<" "<<optHour<<" "<<optMinute<<" "<<optTime<< endl;
+		cout << wDay+1<<" "<<optHour<<" "<<optMinute<<" "<<optTime<< endl;
 	}
 }
 
@@ -217,7 +214,7 @@ City::~City ( )
 
 //------------------------------------------------------------------ PRIVE
 
-Sensor* City::find(int idSensor)
+Sensor* City::find(long idSensor)
 {
 
 #ifdef MAP
