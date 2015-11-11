@@ -1,10 +1,9 @@
-//============================================================================
-// Name        : TP2.2cpp
-// Author      : Ulysse, Adrien
-// Version     :
-// Copyright   :
-// Description : Hello World in C++, Ansi-style
-//============================================================================
+/*************************************************************************
+                           TP2  -  classe principale
+                             -------------------
+    début                : 20/10/15
+    copyright            : (C) 2015 par LEPIC/BUONOMO
+*************************************************************************/
 
 #include <iostream>
 #include <string>
@@ -22,11 +21,6 @@ int main(void)
 	string str, line;
 
 	City LA;
-
-	/* placer ici la déclaration de votre liste ainsi que
-	* son initialisation */
-
-
 
 
 	while (cin.peek() != 'E') {
@@ -65,24 +59,26 @@ int main(void)
 			trafic = str[0];
 			//cout << "#" << str << endl;
 
-			LA.addEvent(id, yyyy, mm, dd, h, m, d7, trafic);
+			LA.AddEvent(id, yyyy, mm, dd, h, m, d7, trafic);
 
-		} else if (str.compare("JAM_DH")==0)
+		}
+		else if (str.compare("JAM_DH")==0)
 		{
 			getline(cin, str);
-			LA.jamDay(atoi(str.c_str())-1);
-		} else if (str.compare("STATS_D7")==0)
+			LA.JamDay(atoi(str.c_str())-1);
+		}
+		else if (str.compare("STATS_D7")==0)
 		{
 			getline(cin, str);
-			LA.statDay(atoi(str.c_str())-1);
-		} else if (str.compare("STATS_C")==0)
+			LA.StatDay(atoi(str.c_str())-1);
+		}
+		else if (str.compare("STATS_C")==0)
 		{
 			getline(cin, str);
-			LA.statSensor(atoi(str.c_str()));
-		}else if (str.compare("OPT")==0)
+			LA.StatSensor(atoi(str.c_str()));
+		}
+		else if (str.compare("OPT")==0)
 		{
-			cout << "tp2 OPT"<<endl;
-
 			int wDay;
 			int hourStart;
 			int hourEnd;
@@ -109,10 +105,9 @@ int main(void)
 				idSensors[SensorIndex]=atoi(str.c_str());
 			}
 			getline(cin, str);
-			idSensors[rideLength]=atoi(str.c_str());
+			idSensors[rideLength - 1]=atoi(str.c_str());
 
-			LA.opt(wDay, hourStart, hourEnd,rideLength, idSensors);
-			LA.opt(wDay,hourStart,hourEnd,rideLength, idSensors);
+			LA.Optimise(wDay, hourStart, hourEnd,rideLength, idSensors);
 		}
 		cin.clear();
 		str.clear();

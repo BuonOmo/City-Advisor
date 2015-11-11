@@ -9,21 +9,27 @@
 
 #ifndef SENSOR_H
 #define SENSOR_H
+
 //------------------------------------------------------------------ Types
+
 using namespace std;
+
 //----------------------------------------------------------------Includes
 
 #include <iostream>
 //------------------------------------------------------------------------
-// Rôle de la classe Sensor
-//
+// Rôle de la classe Sensor :
+//conient la racine d'un arbre de capteurs et réalise des analyses sur ces
+//derniers.
+//langue : programmation en anglais, commentaires en français.
+//------------------------------------------------------------------------
 
 class Sensor
 {
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	int count(char trafic = 'A', int wDay = -1, int hour = -1, int minute = -1)const;
+	int Count(char trafic = 'A', int wDay = -1, int hour = -1, int minute = -1)const;
 	// Mode d'emploi :
 	// Compte les évenement d’un capteur selon les critères choisis. les valeurs par
 	// defaut indiquent que la methode ne tient pas compte du paramètre en valeur par
@@ -34,7 +40,7 @@ public:
 
 
 
-	static int countInAllSensor(Sensor*  rootSensorTree, char trafic = 'A', int wDay = -1, int hour = -1, int minute = -1);
+	static int CountInAllSensor(Sensor*  rootSensorTree, char trafic = 'A', int wDay = -1, int hour = -1, int minute = -1);
 	// Mode d'emploi :
 	// Compte les évenement de tous les capteurs d’un arbre en partant de la racine entrée,
 	// selon les critères choisis. les valeurs par defaut indiquent que la methode ne tient
@@ -45,7 +51,7 @@ public:
 
 
 
-	void add(int year, int month, int day, int hour, int minute, int wDay, char trafic);
+	void Add(int year, int month, int day, int hour, int minute, int wDay, char trafic);
     // Mode d'emploi :
 	// ajoute un evenement au capteur
 	// Contrat :
@@ -54,7 +60,7 @@ public:
 
 
 
-	static Sensor* find(long idSensor,Sensor*  rootSensorTree);
+	static Sensor* Find(long idSensor,Sensor*  rootSensorTree);
 	// Mode d'emploi :
 	// trouve un capteur selon son identifiant dans un arbre de capteurs dont la racine
 	// est donnée en paramètre. Renvoi NULL s'il n'existe pas.

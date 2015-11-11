@@ -33,20 +33,20 @@ public:
 
 //----------------------------------------------------- Méthodes publiques
 
-	void addEvent(long IDSensor, int year,int month,int day, int hour, int minute, int wDay,char trafic);
+	void AddEvent(long IDSensor, int year,int month,int day, int hour, int minute, int wDay,char trafic);
     // Mode d'emploi :
     // ajout un événement a un capteur ou crée le capteur s'il n'existe pas.
 	// Contrat :
 	// les données sont cohérentes (wDay dans [0 ; 6], hour dans [0 ; 59], etc) et trafic
 	// peut prendre les valeurs V, J, R et N.
 
-	void statDay (int wDay);
+	void StatDay (int wDay);
 	// Mode d'emploi :
 	// affiche les statistiques du jour de la semaine selon STATS_D7 du cahier des charges.
     // Contrat :
     // wDay dans [0 ; 6].
 
-	void jamDay(int wDay);
+	void JamDay(int wDay);
 	// Mode d'emploi :
 	// affiche le pourcentage de bouchons par heure de tout les capteurs pour le jour de la
 	// semaine entré en paramètre. Suit JAM_DH du cahier des charges.
@@ -55,14 +55,14 @@ public:
 
 
 
-	void statSensor(int idSensor);
+	void StatSensor(long idSensor);
 	// Mode d'emploi :
 	// affiche les statistiques d'un capteur dont l'identifiant est entré en paramètre.
 	// Suit STATS_C du cahier des charges.
     // Contrat :
     // un évenement a été enregitré pas le capteur dont l'identifiant est idSensor.
 
-	void opt(int wDay, int startHour, int endHour,int rideLength ,long* idSensors );
+	void Optimise(int wDay, int startHour, int endHour,int rideLength ,long* idSensors );
 
 
 //-------------------------------------------- Constructeurs - destructeur
