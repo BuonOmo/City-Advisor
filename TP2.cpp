@@ -114,7 +114,7 @@ int main(void)
 			LA.opt(wDay, hourStart, hourEnd,rideLength, idSensors);
 			LA.opt(wDay,hourStart,hourEnd,rideLength, idSensors);
 		}
-
+		cin.clear();
 		str.clear();
 	}
 
